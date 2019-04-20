@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Protocol Ajax function readme</title>
+  </head>
+  <body>
+    <h1>Protocol Ajax function</h1>
+    <strong>How to use:</strong>
+    <p>
+      Ajax(<span style="color:#00f">url</span>, 
+      <span style="color:#00f">destination_area</span>[, 
+      <span style="color:#00f">form_to_submit</span>[, 
+      <span style="color:#00f">seconds_to_refresh</span>]]);
+    </p>
+    <p>Example 1:</p>
+    <p>
+      &lt;span id="area1">Hellow world&lt;/span>&lt;br><br>
+      &lt;a href="#" onclick="Ajax(<span style="color:#00f">'index.php'</span>, 
+      <span style="color:#00f">'area1'</span>)">
+    </p>
+    <p>Example 2:</p>
+    <p>
+      &lt;form name="form1"><br>
+      &nbsp;&nbsp;&lt;input type="text" name="text1">&lt;br><br>
+      &nbsp;&nbsp;&lt;input type="button" value="Send" onclick="Ajax('index.php?action=edit', 'area1', document.forms['form1'].elements)"><br>
+      &lt/form>
+    </p>
+  </body>
+</html>
