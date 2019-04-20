@@ -31,7 +31,7 @@ function Ajax(Url, Return, Form, Refresh){
       document.body.style.cursor = "default";
     }
   }
-  if(typeof Data == undefined || Data == null){
+  if(typeof Form == undefined || Form == null){
     AjaxObject[Return].open("GET", Url, true);
   }else{
     var Data = ParseSend(Form);
