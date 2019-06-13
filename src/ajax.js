@@ -7,9 +7,9 @@ function Ajax(Url, Return, Form, Refresh){
       AjaxObject[Return] = new XMLHttpRequest();
     }catch(e){
       try{
-	AjaxObject[Return] = new ActiveXObject("Microsoft.XMLHTTP");
+	      AjaxObject[Return] = new ActiveXObject("Microsoft.XMLHTTP");
       }catch(e){
-	AjaxObject[Return] = new ActiveXObject("Msxml2.XMLHTTP");
+	      AjaxObject[Return] = new ActiveXObject("Msxml2.XMLHTTP");
       }
     }
   }
@@ -23,9 +23,9 @@ function Ajax(Url, Return, Form, Refresh){
     }else if(AjaxObject[Return].readyState == 4 && (AjaxObject[Return].status == 200 || AjaxObject[Return].status == 500)){
       document.getElementById(Return).innerHTML = AjaxObject[Return].responseText;
       if(Refresh !== undefined){
-	Refreshers[Return] = setTimeout(function(){
-	  Ajax(Url, Return, null, Refresh);
-	}, Refresh);
+        Refreshers[Return] = setTimeout(function(){
+          Ajax(Url, Return, null, Refresh);
+        }, Refresh);
       }
       Execute(Return);
       document.body.style.cursor = "default";
@@ -44,6 +44,7 @@ function Ajax(Url, Return, Form, Refresh){
 }
 
 function ParseSend(Form){
+  Form = document.forms[Form].elements;
   var send = "";
   for(i = 0; i < Form.length; i++){
     if(Form[i].name != ""){
