@@ -49,7 +49,7 @@ function ParseSend(Form){
   for(i = 0; i < Form.length; i++){
     if(Form[i].name != ""){
       send += Form[i].name + "=" + Form[i].value;
-      if(i < (Form.length - 2)){
+      if(i < (Form.length - 1)){
         send += "&";
       }
     }
