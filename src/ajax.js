@@ -48,7 +48,11 @@ function ParseSend(Form){
   var send = "";
   for(i = 0; i < Form.length; i++){
     if(Form[i].name != ""){
-      send += Form[i].name + "=" + Form[i].value;
+      if(Form[i].type == "checkbox"){
+        send += Form[i].name + "=" + Form[i].checked;
+      }else{
+        send += Form[i].name + "=" + Form[i].value;
+      }
       if(i < (Form.length - 1)){
         send += "&";
       }
