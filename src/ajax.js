@@ -1,3 +1,7 @@
+// Protocol Corporation Ltda.
+// https://github.com/ProtocolLive/Ajax
+// Version 2019122800
+
 var AjaxObject = [], Refreshers = [];
 
 function Ajax(Url, Return, Form, Refresh){
@@ -7,9 +11,9 @@ function Ajax(Url, Return, Form, Refresh){
       AjaxObject[Return] = new XMLHttpRequest();
     }catch(e){
       try{
-	      AjaxObject[Return] = new ActiveXObject("Microsoft.XMLHTTP");
+        AjaxObject[Return] = new ActiveXObject("Microsoft.XMLHTTP");
       }catch(e){
-	      AjaxObject[Return] = new ActiveXObject("Msxml2.XMLHTTP");
+        AjaxObject[Return] = new ActiveXObject("Msxml2.XMLHTTP");
       }
     }
   }
