@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2019122800
+// Version 2019122801
 
 var AjaxObject = [], Refreshers = [];
 
@@ -70,10 +70,10 @@ function Execute(Place){
   while(Text.indexOf("<script") >= 0){
     Text = Text.substr(Text.indexOf("<script") + 7);
     Text = Text.substr(Text.indexOf(">") + 1);
-    Command = Text.substr(0, Text.indexOf("</script>"));
+    Command = Text.substr(0, Text.indexOf("<\/script>"));
     if(Command != ""){
       window.eval(Command);
     }
-    Text = Text.substr(Text.indexOf("</script>") + 9);
+    Text = Text.substr(Text.indexOf("<\/script>") + 9);
   }
 }
