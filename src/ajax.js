@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2019122801
+// Version 2020-01-31-00
 
 var AjaxObject = [], Refreshers = [];
 
@@ -54,6 +54,10 @@ function ParseSend(Form){
     if(Form[i].name != ""){
       if(Form[i].type == "checkbox"){
         send += Form[i].name + "=" + Form[i].checked;
+      }else if(Form[i].type == "radio"){
+        if(Form[i].checked == true){
+          send += Form[i].name + "=" + Form[i].value;
+        }
       }else{
         send += Form[i].name + "=" + Form[i].value;
       }
