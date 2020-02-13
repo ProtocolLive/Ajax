@@ -1,28 +1,56 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Protocol Ajax function readme</title>
+    <title>Ajax - Protocol Corporation</title>
+    <style>
+      .type1{
+        color: #369;
+      }
+      .type2{
+        color: #363;
+      }
+      .type3{
+        color:#ff0000;
+      }
+    </style>
   </head>
   <body>
-    <h1>Protocol Ajax function</h1>
-    <strong>How to use:</strong>
+    <h1>Ajax</h1>
+    <h3>Description</h3>
     <p>
-      Ajax(<span style="color:#00f">url</span>, 
-      <span style="color:#00f">destination_area</span>[, 
-      <span style="color:#00f">form_to_submit</span>[, 
-      <span style="color:#00f">seconds_to_refresh</span>]]);
+      <span class="type1">Ajax</span>(<span class="type1">url</span>, 
+      <span class="type1">destination_area</span>[, 
+      <span class="type1">form_to_submit</span>[, 
+      <span class="type1">seconds_to_refresh</span>]]) <span class="type1">void</span>
     </p>
-    <p>Example 1:</p>
+    <h3>Parameters</h3>
     <p>
-      &lt;span id="area1">Hellow world&lt;/span>&lt;br><br>
-      &lt;a href="#" onclick="Ajax(<span style="color:#00f">'index.php'</span>, 
-      <span style="color:#00f">'area1'</span>)">
+      <strong class="type1">url</strong><br>
+      Page to be called
     </p>
-    <p>Example 2:</p>
     <p>
-      &lt;form name="form1"><br>
-      &nbsp;&nbsp;&lt;input type="text" name="text1">&lt;br><br>
-      &nbsp;&nbsp;&lt;input type="button" value="Send" onclick="Ajax('index.php?action=edit', 'area1', 'form1')"><br>
+      <strong class="type1">destination_area</strong><br>
+      Id of an object in html
+    </p>
+    <p>
+      <strong class="type1">form_to_submit</strong> (Optional)<br>
+      Form name to be sended
+    </p>
+    <p>
+      <strong class="type1">seconds_to_refresh</strong> (Optional)<br>
+      The area indicated above will be refreshed in x seconds
+    </p>
+    <h3>Examples</h3>
+    <p>
+      <strong>Simple call:</strong><br>
+      &lt;span id=<span class="type3">"area1"</span>>Hellow world&lt;/span>&lt;br><br>
+      &lt;a href=<span class="type3">"#"</span> onclick=<span class="type3">"Ajax('index.php', 'area1')"</span>>
+    </p>
+    <p>
+      <strong>A call with form:</strong><br>
+      &lt;form name=<span class="type3">"form1"</span>><br>
+      &nbsp;&nbsp;&lt;input type=<span class="type3">"text"</span> name=<span class="type3">"text1"</span>>&lt;br><br>
+      &nbsp;&nbsp;&lt;input type=<span class="type3">"button"</span> value=<span class="type3">"Send"</span> onclick=<span class="type3">"Ajax('index.php?action=edit', 'area1', 'form1')"</span>><br>
+      &nbsp;&nbsp;&lt;span id=<span class="type3">"area1"</span>>&lt;/span>&lt;br><br>
       &lt/form>
     </p>
   </body>

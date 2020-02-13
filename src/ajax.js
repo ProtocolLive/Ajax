@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020-01-31-00
+// Version 2020-02-13-00
 
 var AjaxObject = [], Refreshers = [];
 
@@ -44,6 +44,7 @@ function Ajax(Url, Return, Form, Refresh){
     AjaxObject[Return].setRequestHeader("Content-length", Data.length);
     AjaxObject[Return].setRequestHeader("Connection", "close");
   }
+  AjaxObject[Return].timeout = 60000;
   AjaxObject[Return].send(Data);
 }
 
