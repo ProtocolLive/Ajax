@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020-02-13-00
+// Version 2020-03-07-00
 
 var AjaxObject = [], Refreshers = [];
 
@@ -36,7 +36,7 @@ function Ajax(Url, Return, Form, Refresh){
     }
   }
   AjaxObject[Return].ontimeout = function(e) {
-    document.getElementById(Return).innerHTML = e.currentTarget.statusText;
+    document.getElementById(Return).innerHTML = "Loading timeout!";
   };
   if(typeof Form == undefined || Form == null){
     AjaxObject[Return].open("GET", Url, true);
