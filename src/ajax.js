@@ -35,6 +35,9 @@ function Ajax(Url, Return, Form, Refresh){
       document.body.style.cursor = "default";
     }
   }
+  AjaxObject[Return].ontimeout = function(e) {
+    document.getElementById(Return).innerHTML = e.currentTarget.statusText;
+  };
   if(typeof Form == undefined || Form == null){
     AjaxObject[Return].open("GET", Url, true);
   }else{
