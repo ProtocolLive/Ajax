@@ -1,10 +1,12 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020-03-07-00
+// Version 2020.04.27.00
 
-var AjaxObject = [], Refreshers = [];
+let AjaxObject = [];
+let Refreshers = [];
 
 function Ajax(Url, Return, Form, Refresh){
+  let Data = null;
   clearTimeout(Refreshers[Return]);
   if(AjaxObject[Return] == undefined){
     try{
@@ -41,7 +43,7 @@ function Ajax(Url, Return, Form, Refresh){
   if(typeof Form == undefined || Form == null){
     AjaxObject[Return].open("GET", Url, true);
   }else{
-    var Data = ParseSend(Form);
+    Data = ParseSend(Form);
     AjaxObject[Return].open("POST", Url, true);
     AjaxObject[Return].setRequestHeader("Content-type", "application/x-www-form-Urlencoded");
     AjaxObject[Return].setRequestHeader("Content-length", Data.length);
@@ -52,9 +54,9 @@ function Ajax(Url, Return, Form, Refresh){
 }
 
 function ParseSend(Form){
+  let send = "";
   Form = document.forms[Form].elements;
-  var send = "";
-  for(i = 0; i < Form.length; i++){
+  for(let i = 0; i < Form.length; i++){
     if(Form[i].name != ""){
       if(Form[i].type == "checkbox"){
         send += Form[i].name + "=" + Form[i].checked;
@@ -74,7 +76,8 @@ function ParseSend(Form){
 }
 
 function Execute(Place){
-  var Command, Text = document.getElementById(Place).innerHTML;
+  let Command;
+  let Text = document.getElementById(Place).innerHTML;
   while(Text.indexOf("<script") >= 0){
     Text = Text.substr(Text.indexOf("<script") + 7);
     Text = Text.substr(Text.indexOf(">") + 1);
