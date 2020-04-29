@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.04.27.00
+// Version 2020.04.29.00
 
 let AjaxObject = [];
 let Refreshers = [];
@@ -23,10 +23,13 @@ function Ajax(Url, Return, Form, Refresh){
     if(AjaxObject[Return].readyState == 1){
       document.getElementById(Return).innerHTML = "<img src=\"https://raw.githubusercontent.com/ProtocolLive/PublicImg/master/src/loading.gif\" alt=\"\">";
       document.body.style.cursor = "progress";
+    }else if(AjaxObject[Return].readyState == 3){
+      document.getElementById(Return).innerHTML = "<img src=\"https://raw.githubusercontent.com/ProtocolLive/PublicImg/master/src/loading.gif\" alt=\"\"><br>";
+      document.getElementById(Return).innerHTML += AjaxObject[Return].responseText;
     }else if(AjaxObject[Return].readyState == 4 && AjaxObject[Return].status == 404){
       document.getElementById(Return).innerHTML = "Error 404: Page not found";
       document.body.style.cursor = "default";
-    }else if(AjaxObject[Return].readyState == 4 && (AjaxObject[Return].status == 200 || AjaxObject[Return].status == 500)){
+    }else if(AjaxObject[Return].readyState == 4){
       document.getElementById(Return).innerHTML = AjaxObject[Return].responseText;
       if(Refresh !== undefined){
         Refreshers[Return] = setTimeout(function(){
