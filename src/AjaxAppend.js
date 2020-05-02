@@ -1,11 +1,11 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.00
+// Version 2020.05.02.01
 
 let AjaxObject = [];
 let Refreshers = [];
 
-function AjaxAppend(Url, Table, Form){
+function AjaxAppend(Url, Table, Form, Position = -1){
   let Data = null;
   let Line = null;
   clearTimeout(Refreshers[Table]);
@@ -24,7 +24,7 @@ function AjaxAppend(Url, Table, Form){
     if(AjaxObject[Table].readyState == 1){
       document.body.style.cursor = "progress";
     }else if(AjaxObject[Table].readyState == 4){
-      Line = document.getElementById(Table).insertRow(-1);
+      Line = document.getElementById(Table).insertRow(Position);
       Line.innerHTML = AjaxObject[Table].responseText;
       document.body.style.cursor = "default";
     }
