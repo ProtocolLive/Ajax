@@ -1,0 +1,15 @@
+{
+    "APIs": {
+        "Ajax.js": {
+            "Version": "2020.05.02.02",
+            "md5": "decac246ea45c0f72008edd0001aa7b0"
+        },
+        "AjaxAppen.js": {
+            "Version": "2020.05.02.04",
+            "md5": ""
+        },
+        "AjaxAppend.js": {
+            "md5": "ae491a5afae69670d83cd0e68ca69ca2"
+        }
+    }
+}

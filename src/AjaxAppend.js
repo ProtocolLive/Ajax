@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.03
+// Version 2020.05.02.04
 
 if(typeof AjaxObject == "undefined"){
   var AjaxObject = [];
@@ -35,7 +35,7 @@ function AjaxAppend(Url, Table, Form, Position = -1){
   if(typeof Form == "undefined" || Form == null){
     AjaxObject[Table].open("GET", Url, true);
   }else{
-    Data = ParseSend(Form);
+    Data = AjaxParseSend(Form);
     AjaxObject[Table].open("POST", Url, true);
     AjaxObject[Table].setRequestHeader("Content-type", "application/x-www-form-Urlencoded");
     AjaxObject[Table].setRequestHeader("Content-length", Data.length);
