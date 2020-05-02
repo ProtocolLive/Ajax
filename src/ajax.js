@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.00
+// Version 2020.05.02.01
 
 let AjaxObject = [];
 let Refreshers = [];
@@ -56,26 +56,28 @@ function Ajax(Url, Return, Form, Refresh){
   AjaxObject[Return].send(Data);
 }
 
-function ParseSend(Form){
-  let send = "";
-  Form = document.forms[Form].elements;
-  for(let i = 0; i < Form.length; i++){
-    if(Form[i].name != ""){
-      if(Form[i].type == "checkbox"){
-        send += Form[i].name + "=" + Form[i].checked;
-      }else if(Form[i].type == "radio"){
-        if(Form[i].checked == true){
+if(typeof ParseSend != "function"){
+  function ParseSend(Form){
+    let send = "";
+    Form = document.forms[Form].elements;
+    for(let i = 0; i < Form.length; i++){
+      if(Form[i].name != ""){
+        if(Form[i].type == "checkbox"){
+          send += Form[i].name + "=" + Form[i].checked;
+        }else if(Form[i].type == "radio"){
+          if(Form[i].checked == true){
+            send += Form[i].name + "=" + Form[i].value;
+          }
+        }else{
           send += Form[i].name + "=" + Form[i].value;
         }
-      }else{
-        send += Form[i].name + "=" + Form[i].value;
-      }
-      if(i < (Form.length - 1)){
-        send += "&";
+        if(i < (Form.length - 1)){
+          send += "&";
+        }
       }
     }
+    return send;
   }
-  return send;
 }
 
 function Execute(Place){
