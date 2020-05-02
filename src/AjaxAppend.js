@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.01
+// Version 2020.05.02.02
 
 let AjaxObject = [];
 let Refreshers = [];
@@ -65,6 +65,6 @@ if(typeof ParseSend != "function"){
         }
       }
     }
-    Table send;
+    return send;
   }
 }
