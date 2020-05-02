@@ -1,13 +1,15 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.01
+// Version 2020.05.02.02
 
-let AjaxObject = [];
-let Refreshers = [];
+if(typeof AjaxObject == "undefined"){
+  var AjaxObject = [];
+  var AjaxRefreshers = [];
+}
 
 function Ajax(Url, Return, Form, Refresh){
   let Data = null;
-  clearTimeout(Refreshers[Return]);
+  clearTimeout(AjaxRefreshers[Return]);
   if(AjaxObject[Return] == undefined){
     try{
       AjaxObject[Return] = new XMLHttpRequest();
@@ -32,11 +34,11 @@ function Ajax(Url, Return, Form, Refresh){
     }else if(AjaxObject[Return].readyState == 4){
       document.getElementById(Return).innerHTML = AjaxObject[Return].responseText;
       if(Refresh !== undefined){
-        Refreshers[Return] = setTimeout(function(){
+        AjaxRefreshers[Return] = setTimeout(function(){
           Ajax(Url, Return, null, Refresh);
         }, Refresh);
       }
-      Execute(Return);
+      AjaxExecute(Return);
       document.body.style.cursor = "default";
     }
   }
@@ -46,7 +48,7 @@ function Ajax(Url, Return, Form, Refresh){
   if(typeof Form == "undefined" || Form == null){
     AjaxObject[Return].open("GET", Url, true);
   }else{
-    Data = ParseSend(Form);
+    Data = AjaxParseSend(Form);
     AjaxObject[Return].open("POST", Url, true);
     AjaxObject[Return].setRequestHeader("Content-type", "application/x-www-form-Urlencoded");
     AjaxObject[Return].setRequestHeader("Content-length", Data.length);
@@ -56,8 +58,8 @@ function Ajax(Url, Return, Form, Refresh){
   AjaxObject[Return].send(Data);
 }
 
-if(typeof ParseSend != "function"){
-  function ParseSend(Form){
+if(typeof AjaxParseSend == "undefined"){
+  function AjaxParseSend(Form){
     let send = "";
     Form = document.forms[Form].elements;
     for(let i = 0; i < Form.length; i++){
@@ -80,7 +82,7 @@ if(typeof ParseSend != "function"){
   }
 }
 
-function Execute(Place){
+function AjaxExecute(Place){
   let Command;
   let Text = document.getElementById(Place).innerHTML;
   while(Text.indexOf("<script") >= 0){

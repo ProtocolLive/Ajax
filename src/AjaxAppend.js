@@ -1,14 +1,14 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.02
+// Version 2020.05.02.03
 
-let AjaxObject = [];
-let Refreshers = [];
+if(typeof AjaxObject == "undefined"){
+  var AjaxObject = [];
+}
 
 function AjaxAppend(Url, Table, Form, Position = -1){
   let Data = null;
   let Line = null;
-  clearTimeout(Refreshers[Table]);
   if(AjaxObject[Table] == undefined){
     try{
       AjaxObject[Table] = new XMLHttpRequest();
@@ -45,8 +45,8 @@ function AjaxAppend(Url, Table, Form, Position = -1){
   AjaxObject[Table].send(Data);
 }
 
-if(typeof ParseSend != "function"){
-  function ParseSend(Form){
+if(typeof AjaxParseSend == "undefined"){
+  function AjaxParseSend(Form){
     let send = "";
     Form = document.forms[Form].elements;
     for(let i = 0; i < Form.length; i++){
