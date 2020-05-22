@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.04
+// Version 2020.05.22.00
 
 if(typeof AjaxObject == "undefined"){
   var AjaxObject = [];
@@ -22,15 +22,15 @@ function AjaxAppend(Url, Table, Form, Position = -1){
   }
   AjaxObject[Table].onreadystatechange = function(){
     if(AjaxObject[Table].readyState == 1){
-      document.body.style.cursor = "progress";
+      document.documentElement.style.cursor = "progress";
     }else if(AjaxObject[Table].readyState == 4){
       Line = document.getElementById(Table).insertRow(Position);
       Line.innerHTML = AjaxObject[Table].responseText;
-      document.body.style.cursor = "default";
+      document.documentElement.style.cursor = "default";
     }
   }
   AjaxObject[Table].ontimeout = function(e) {
-    document.body.style.cursor = "default";
+    document.documentElement.style.cursor = "default";
   };
   if(typeof Form == "undefined" || Form == null){
     AjaxObject[Table].open("GET", Url, true);

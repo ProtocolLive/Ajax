@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.02.02
+// Version 2020.05.22.00
 
 if(typeof AjaxObject == "undefined"){
   var AjaxObject = [];
@@ -24,13 +24,13 @@ function Ajax(Url, Return, Form, Refresh){
   AjaxObject[Return].onreadystatechange = function(){
     if(AjaxObject[Return].readyState == 1){
       document.getElementById(Return).innerHTML = "<img src=\"https://raw.githubusercontent.com/ProtocolLive/PublicImg/master/src/loading.gif\" alt=\"\">";
-      document.body.style.cursor = "progress";
+      document.documentElement.style.cursor = "progress";
     }else if(AjaxObject[Return].readyState == 3){
       document.getElementById(Return).innerHTML = "<img src=\"https://raw.githubusercontent.com/ProtocolLive/PublicImg/master/src/loading.gif\" alt=\"\"><br>";
       document.getElementById(Return).innerHTML += AjaxObject[Return].responseText;
     }else if(AjaxObject[Return].readyState == 4 && AjaxObject[Return].status == 404){
       document.getElementById(Return).innerHTML = "Error 404: Page not found";
-      document.body.style.cursor = "default";
+      document.documentElement.style.cursor = "default";
     }else if(AjaxObject[Return].readyState == 4){
       document.getElementById(Return).innerHTML = AjaxObject[Return].responseText;
       if(Refresh !== undefined){
@@ -39,7 +39,7 @@ function Ajax(Url, Return, Form, Refresh){
         }, Refresh);
       }
       AjaxExecute(Return);
-      document.body.style.cursor = "default";
+      document.documentElement.style.cursor = "default";
     }
   }
   AjaxObject[Return].ontimeout = function(e) {
