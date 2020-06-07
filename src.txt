@@ -2,11 +2,11 @@
     "Libraries": {
         "Ajax.js": {
             "Version": "2020.05.22.00",
-            "md5": "da02491056057e802df3012efa2e748b"
+            "md5": "146642f9b9f261738f6c72d2dc2d9efa"
         },
         "AjaxAppend.js": {
             "Version": "2020.05.22.00",
-            "md5": "02e6b245396a23f8368e0fe185eca4ff"
+            "md5": "4e975f1369f980973758bd1054d5509d"
         }
     }
 }

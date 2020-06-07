@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.05.22.00
+// Version 2020.06.06.00
 
 if(typeof AjaxObject == "undefined"){
   var AjaxObject = [];
@@ -65,7 +65,11 @@ if(typeof AjaxParseSend == "undefined"){
     for(let i = 0; i < Form.length; i++){
       if(Form[i].name != ""){
         if(Form[i].type == "checkbox"){
-          send += Form[i].name + "=" + Form[i].checked;
+          if(Form[i].checked == true){
+            send += Form[i].name + "=1";
+          }else{
+            send += Form[i].name + "=0";
+          }
         }else if(Form[i].type == "radio"){
           if(Form[i].checked == true){
             send += Form[i].name + "=" + Form[i].value;
