@@ -1,0 +1,14 @@
+{
+  "User": "ProtocolLive",
+  "Repository": "Ajax",
+  "Library": "Ajax",
+  "Version": "2020.06.06.00",
+  "md5": "844f5471681404967c2c6c1d048667f9",
+  "EntryPoint": "ajax.js",
+  "Files": {
+    "ajax.js": {
+      "Version": "2020.06.06.00",
+      "md5": "146642f9b9f261738f6c72d2dc2d9efa"
+    }
+  }
+}

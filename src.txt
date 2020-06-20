@@ -1,12 +1,10 @@
 {
-    "Libraries": {
-        "Ajax.js": {
-            "Version": "2020.05.22.00",
-            "md5": "146642f9b9f261738f6c72d2dc2d9efa"
-        },
-        "AjaxAppend.js": {
-            "Version": "2020.05.22.00",
-            "md5": "4e975f1369f980973758bd1054d5509d"
-        }
-    }
+  "Ajax.js": {
+    "Version": "2020.06.06.00",
+    "md5": "844f5471681404967c2c6c1d048667f9"
+  },
+  "AjaxAppend.js": {
+    "Version": "2020.05.22.00",
+    "md5": "4e975f1369f980973758bd1054d5509d"
+  }
 }
