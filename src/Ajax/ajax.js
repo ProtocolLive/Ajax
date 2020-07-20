@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.06.06.00
+// Version 2020.07.20.00
 
 if(typeof AjaxObject == "undefined"){
   var AjaxObject = [];
@@ -75,7 +75,7 @@ if(typeof AjaxParseSend == "undefined"){
             send += Form[i].name + "=" + Form[i].value;
           }
         }else{
-          send += Form[i].name + "=" + Form[i].value;
+          send += Form[i].name + "=" + encodeURIComponent(Form[i].value);
         }
         if(i < (Form.length - 1)){
           send += "&";
