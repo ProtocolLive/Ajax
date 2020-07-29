@@ -1,61 +1,11 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.07.25.00
+// Version 2020.07.28.00
 
-if(typeof AjaxObject == "undefined"){
+if(typeof AjaxObject === "undefined"){
   var AjaxObject = [];
-  var AjaxLoading = '';
   var AjaxRefreshers = [];
-}
-
-function Ajax(Url, Return, Form, Refresh){
-  let Data = null;
-  clearTimeout(AjaxRefreshers[Return]);
-  if(AjaxObject[Return] == undefined){
-    try{
-      AjaxObject[Return] = new XMLHttpRequest();
-    }catch(e){
-      try{
-        AjaxObject[Return] = new ActiveXObject("Microsoft.XMLHTTP");
-      }catch(e){
-        AjaxObject[Return] = new ActiveXObject("Msxml2.XMLHTTP");
-      }
-    }
-  }
-  AjaxObject[Return].onreadystatechange = function(){
-    if(AjaxObject[Return].readyState == 1){
-      document.getElementById(Return).innerHTML = AjaxLoading;
-      document.documentElement.style.cursor = "progress";
-    }else if(AjaxObject[Return].readyState == 3){
-      document.getElementById(Return).innerHTML = AjaxLoading;
-      document.getElementById(Return).innerHTML += AjaxObject[Return].responseText;
-    }else if(AjaxObject[Return].readyState == 4 && AjaxObject[Return].status == 404){
-      document.getElementById(Return).innerHTML = "Error 404: Page not found";
-      document.documentElement.style.cursor = "default";
-    }else if(AjaxObject[Return].readyState == 4){
-      document.getElementById(Return).innerHTML = AjaxObject[Return].responseText;
-      if(Refresh !== undefined){
-        AjaxRefreshers[Return] = setTimeout(function(){
-          Ajax(Url, Return, null, Refresh);
-        }, Refresh);
-      }
-      AjaxExecute(Return);
-      document.documentElement.style.cursor = "default";
-    }
-  }
-  AjaxObject[Return].ontimeout = function(e) {
-    document.getElementById(Return).innerHTML = "Loading timeout!";
-    document.documentElement.style.cursor = "default";
-  };
-  if(typeof Form == "undefined" || Form == null){
-    AjaxObject[Return].open("GET", Url, true);
-  }else{
-    Data = AjaxParseSend(Form);
-    AjaxObject[Return].open("POST", Url, true);
-    AjaxObject[Return].setRequestHeader("Content-type", "application/x-www-form-Urlencoded");
-  }
-  AjaxObject[Return].timeout = 60000;
-  AjaxObject[Return].send(Data);
+  var AjaxLoading = '';
 }
 
 if(typeof AjaxParseSend == "undefined"){
@@ -97,5 +47,84 @@ function AjaxExecute(Place){
       window.eval(Command);
     }
     Text = Text.substr(Text.indexOf("<\/script>") + 9);
+  }
+}
+
+function AjaxFetch(Url, Return, Form, Refresh){
+  let Data
+  console.log('usou o fetch')
+  if(Form !== undefined){
+    Data = {
+      method: 'POST',
+      body: new FormData(document.forms[Form])
+    }
+  }else{
+    Data = null
+  }
+  fetch(Url, Data)
+  .then(document.getElementById(Return).innerHTML = AjaxLoading)
+  .then((response)=>{
+    response.text()
+    .then((result)=>{
+      document.getElementById(Return).innerHTML = result
+    })
+  })
+}
+
+function AjaxXTR(Url, Return, Form, Refresh){
+  let Data = null;
+  if(AjaxObject[Return] == undefined){
+    try{
+      AjaxObject[Return] = new XMLHttpRequest();
+    }catch(e){
+      try{
+        AjaxObject[Return] = new ActiveXObject("Microsoft.XMLHTTP");
+      }catch(e){
+        AjaxObject[Return] = new ActiveXObject("Msxml2.XMLHTTP");
+      }
+    }
+  }
+  AjaxObject[Return].onreadystatechange = function(){
+    if(AjaxObject[Return].readyState == 1){
+      document.getElementById(Return).innerHTML = AjaxLoading;
+      document.documentElement.style.cursor = "progress";
+    }else if(AjaxObject[Return].readyState == 3){
+      document.getElementById(Return).innerHTML = AjaxLoading;
+      document.getElementById(Return).innerHTML += AjaxObject[Return].responseText;
+    }else if(AjaxObject[Return].readyState == 4 && AjaxObject[Return].status == 404){
+      document.getElementById(Return).innerHTML = "Error 404: Page not found";
+      document.documentElement.style.cursor = "default";
+    }else if(AjaxObject[Return].readyState == 4){
+      document.getElementById(Return).innerHTML = AjaxObject[Return].responseText;
+      if(Refresh !== undefined){
+        AjaxRefreshers[Return] = setTimeout(function(){
+          Ajax(Url, Return, null, Refresh);
+        }, Refresh);
+      }
+      AjaxExecute(Return);
+      document.documentElement.style.cursor = "default";
+    }
+  }
+  AjaxObject[Return].ontimeout = function(e) {
+    document.getElementById(Return).innerHTML = "Loading timeout!";
+    document.documentElement.style.cursor = "default";
+  };
+  if(typeof Form === "undefined" || Form == null){
+    AjaxObject[Return].open("GET", Url, true);
+  }else{
+    Data = AjaxParseSend(Form);
+    AjaxObject[Return].open("POST", Url, true);
+    AjaxObject[Return].setRequestHeader("Content-type", "application/x-www-form-Urlencoded");
+  }
+  AjaxObject[Return].timeout = 60000;
+  AjaxObject[Return].send(Data);
+}
+
+function Ajax(Url, Return, Form, Refresh){
+  clearTimeout(AjaxRefreshers[Return]);
+  if('fetch' in window){
+    AjaxFetch(Url, Return, Form, Refresh)
+  }else{
+    AjaxXTR(Url, Return, Form, Refresh)
   }
 }
