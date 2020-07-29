@@ -1,8 +1,8 @@
 [
     {
         "Ajax": {
-            "Version": "2020.07.29.00",
-            "md5": "45f0cf3a5b7d0a11617bc7effdcf3999"
+            "Version": "2020.07.29.01",
+            "md5": "d6b23eb7e4aa2ca730538382d98cf6a1"
         }
     }
 ]
