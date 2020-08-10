@@ -2,13 +2,13 @@
   "User": "ProtocolLive",
   "Repository": "Ajax",
   "Library": "Ajax",
-  "Version": "2020.07.29.01",
-  "md5": "d6b23eb7e4aa2ca730538382d98cf6a1",
+  "Version": "2020.08.10.00",
+  "md5": "365564bb875ee248fea80ecd1e4cf53f",
   "EntryPoint": "",
   "Files": {
     "ajax.js": {
-      "Version": "2020.07.29.01",
-      "md5": "35c512d52c3b6f9caa3fa8e840c4304b"
+      "Version": "2020.08.10.00",
+      "md5": "32988be1076bae518fd660a7dfe2c602"
     },
     "AjaxAppend.js": {
       "Version": "2020.07.25.00",

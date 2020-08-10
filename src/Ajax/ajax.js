@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.07.29.01
+// Version 2020.08.10.00
 
 if(typeof AjaxObject === 'undefined'){
   var AjaxObject = []
@@ -29,18 +29,20 @@ function AjaxFetch(Url, Return, Form){
       body: new FormData(document.forms[Form])
     }
   }
-  fetch(Url, Data).then(
+  fetch(Url, Data)
+  .then(
     document.getElementById(Return).innerHTML = AjaxLoading
-  ).then(
-    (response)=>{
-      response.text().then(
-        (result)=>{
-          document.getElementById(Return).innerHTML = result
-          AjaxExecute(Return)
-        }
-      )
-    }
   )
+  .then((response)=>{
+    response.text()
+    .then((result)=>{
+      document.getElementById(Return).innerHTML = result
+      AjaxExecute(Return)
+    })
+  })
+  .catch((error)=>{
+    document.getElementById(Return).innerHTML = error.message
+  })
 }
 
 function AjaxXtr(Url, Return, Form){
