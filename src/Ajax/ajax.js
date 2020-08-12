@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.08.11.00
+// Version 2020.08.11.01
 
 if(typeof AjaxObject === 'undefined'){
   var AjaxObject = []
@@ -34,7 +34,7 @@ function AjaxFetch(Url, Return, Form){
     document.getElementById(Return).innerHTML = AjaxLoading
   )
   .then((response)=>{
-    if(response.status !== '200'){
+    if(response.status !== 200){
       document.getElementById(Return).innerHTML = "Error " + response.status
     }else{
       response.text()
