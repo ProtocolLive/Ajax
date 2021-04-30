@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2021.04.29.00
+// Version 2021.04.29.01
 
 if(typeof AjaxObject === 'undefined'){
   var AjaxObject = []
@@ -8,7 +8,7 @@ if(typeof AjaxObject === 'undefined'){
 }
 
 function AjaxExecute(Place){
-  Array.from(Place.querySelectorAll('script')).forEach(Old => {
+  Array.from(document.getElementById(Place).querySelectorAll('script')).forEach(Old => {
     let New = document.createElement('script')
     Array.from(Old.attributes).forEach(Att => {
       New.setAttribute(Att.name, Att.value)
