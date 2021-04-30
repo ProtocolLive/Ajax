@@ -1,6 +1,6 @@
 // Protocol Corporation Ltda.
 // https://github.com/ProtocolLive/Ajax
-// Version 2020.08.13.01
+// Version 2021.04.29.00
 
 if(typeof AjaxObject === 'undefined'){
   var AjaxObject = []
@@ -8,17 +8,14 @@ if(typeof AjaxObject === 'undefined'){
 }
 
 function AjaxExecute(Place){
-  let Command
-  let Text = document.getElementById(Place).innerHTML
-  while(Text.indexOf('<script') >= 0){
-    Text = Text.substr(Text.indexOf('<script') + 7)
-    Text = Text.substr(Text.indexOf('>') + 1)
-    Command = Text.substr(0, Text.indexOf('<\/script>'))
-    if(Command !== ''){
-      window.eval(Command)
-    }
-    Text = Text.substr(Text.indexOf('<\/script>') + 9)
-  }
+  Array.from(Place.querySelectorAll('script')).forEach(Old => {
+    let New = document.createElement('script')
+    Array.from(Old.attributes).forEach(Att => {
+      New.setAttribute(Att.name, Att.value)
+    })
+    New.appendChild(document.createTextNode(Old.innerHTML))
+    Old.parentNode.replaceChild(New, Old)
+  })
 }
 
 function AjaxFetch(Url, Return, Form){
