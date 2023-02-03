@@ -1,6 +1,6 @@
-// Protocol Corporation Ltda.
-// https://github.com/ProtocolLive/Ajax
-// Version 2021.04.29.01
+//Protocol Corporation Ltda.
+//https://github.com/ProtocolLive/Ajax
+//2023.02.03.00
 
 if(typeof AjaxObject === 'undefined'){
   var AjaxObject = []
@@ -38,9 +38,7 @@ function AjaxFetch(Url, Return, Form){
         document.getElementById(Return).innerHTML = "Error " + response.status + "<br>"
       }
       document.getElementById(Return).innerHTML += result
-      if(response.status === 200){
-        AjaxExecute(Return)
-      }
+      AjaxExecute(Return)
     })
   })
   .catch((error)=>{
