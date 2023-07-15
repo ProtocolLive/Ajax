@@ -1,6 +1,6 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//2023.02.03.00
+//Version 2023.07.15.00
 
 if(typeof AjaxObject === 'undefined'){
   var AjaxObject = []
@@ -34,7 +34,8 @@ function AjaxFetch(Url, Return, Form){
     response.text()
     .then((result)=>{
       document.getElementById(Return).innerHTML = ""
-      if(response.status !== 200){
+      if(response.status !== 200
+      && result === ''){
         document.getElementById(Return).innerHTML = "Error " + response.status + "<br>"
       }
       document.getElementById(Return).innerHTML += result
