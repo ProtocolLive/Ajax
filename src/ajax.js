@@ -1,6 +1,10 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2023.07.15.01
+//Version 2023.08.04.00
+
+/*
+To use a loading animation, create an element with id "AjaxLoading".
+*/
 
 if(typeof AjaxObject === 'undefined'){
   var AjaxObject = []
@@ -27,9 +31,6 @@ function AjaxFetch(Url, Return, Form){
     }
   }
   fetch(Url, Data)
-  .then(
-    document.getElementById(Return).innerHTML = AjaxLoading
-  )
   .then((response)=>{
     response.text()
     .then((result)=>{
@@ -93,6 +94,11 @@ function AjaxXtr(Url, Return, Form){
 }
 
 function Ajax(Url, Return, Form){
+  if(document.getElementById("AjaxLoading") !== null){
+    document.getElementById(Return).innerHTML = document.getElementById("AjaxLoading").innerHTML
+  }else{
+    document.getElementById(Return).innerText = ""
+  }
   if('fetch' in window){
     AjaxFetch(Url, Return, Form)
   }else{
