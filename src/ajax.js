@@ -1,6 +1,6 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2023.08.04.00
+//Version 2023.09.01.00
 
 /*
 To use a loading animation, create an element with id "AjaxLoading".
@@ -23,14 +23,7 @@ function AjaxExecute(Place){
 }
 
 function AjaxFetch(Url, Return, Form){
-  let Data = null
-  if(Form !== undefined){
-    Data = {
-      method: 'POST',
-      body: new FormData(document.forms[Form])
-    }
-  }
-  fetch(Url, Data)
+  fetch(Url, Form)
   .then((response)=>{
     response.text()
     .then((result)=>{
@@ -83,25 +76,46 @@ function AjaxXtr(Url, Return, Form){
     place = 'Loading timeout!'
     document.documentElement.style.cursor = 'default'
   }
-  if(typeof Form === 'undefined' || Form === null){
+  if(typeof Form === undefined){
     AjaxObject[Return].open('GET', Url, true)
   }else{
-    Data = new FormData(document.forms[Form])
     AjaxObject[Return].open('POST', Url, true)
   }
   AjaxObject[Return].timeout = 60000
-  AjaxObject[Return].send(Data)
+  AjaxObject[Return].send(Form)
 }
 
 function Ajax(Url, Return, Form){
+  if(document.getElementById(Return) === null){
+    console.log('Invalid return element')
+    return
+  }
+  if(Form !== undefined && document.forms[Form] === undefined){
+    console.log('Invalid form element')
+    return
+  }
+  if('fetch' in window){
+    if(Form !== undefined){
+      Form = {
+        method: 'POST',
+        body: new FormData(document.forms[Form])
+      }
+    }
+    Loading(Return)
+    AjaxFetch(Url, Return, Form)
+  }else{
+    if(Form !== undefined){
+      Form = new FormData(document.forms[Form])
+    }
+    Loading(Return)
+    AjaxXtr(Url, Return, Form)
+  }
+}
+
+function Loading(Return){
   if(document.getElementById("AjaxLoading") !== null){
     document.getElementById(Return).innerHTML = document.getElementById("AjaxLoading").innerHTML
   }else{
     document.getElementById(Return).innerText = ""
-  }
-  if('fetch' in window){
-    AjaxFetch(Url, Return, Form)
-  }else{
-    AjaxXtr(Url, Return, Form)
   }
 }
