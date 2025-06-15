@@ -1,6 +1,6 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2024.11.09.01
+//Version 2025.06.07.00
 
 /*
 To use a loading animation, create an element with id "AjaxLoading".
@@ -24,21 +24,27 @@ function AjaxExecute(Place){
 
 function AjaxFetch(Url, Return, Form){
   fetch(Url, Form)
-  .then(response => response.text())
-  .then(result => {
-    document.getElementById(Return).innerHTML = ""
-    if(response.status !== 200
-    && result === ''){
-      document.getElementById(Return).innerHTML = 'Response error<br>'
-      console.log('Ajax: Error ' + response.status + '\n' + response.statusText)
-    }
-    document.getElementById(Return).innerHTML += result
-    if(response.status === 200){
-      AjaxExecute(Return)
-    }
+  .then(response => {
+    response.text()
+    .then(result => {
+      document.getElementById(Return).innerHTML = ""
+      if(response.status !== 200
+      && result === ''){
+        document.getElementById(Return).innerHTML = 'Response error<br>'
+        console.log('Ajax: Error ' + response.status + '\n' + response.statusText)
+      }
+      document.getElementById(Return).innerHTML += result
+      if(response.status === 200){
+        AjaxExecute(Return)
+      }
+    })
+    .catch((error) => {
+      document.getElementById(Return).innerHTML = 'Ajax error<br>'
+      console.log('Ajax: ' + error.message)
+    })
   })
   .catch((error)=>{
-    document.getElementById(Return).innerHTML = 'Response error<br>'
+    document.getElementById(Return).innerHTML = 'Ajax error<br>'
     console.log('Ajax: ' + error.message)
   })
 }
