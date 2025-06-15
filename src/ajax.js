@@ -1,12 +1,12 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2025.06.15.03
+//Version 2025.06.15.04
 
 /*
 To use a loading animation, create an element with id "AjaxLoading".
 */
 
-if(typeof AjaxObject === 'undefined'){
+if(typeof AjaxObject === undefined){
   var AjaxObject = []
   var AjaxLoading = ''
 }
@@ -73,7 +73,7 @@ function AjaxXtr(Url, Return, Form){
       }
     }
   }
-  AjaxObject[Return].onreadystatechange = ()=>{
+  AjaxObject[Return].onreadystatechange = () => {
     if(AjaxObject[Return].readyState == 1){
       place = AjaxLoading
       document.documentElement.style.cursor = 'progress'
@@ -88,7 +88,7 @@ function AjaxXtr(Url, Return, Form){
       document.documentElement.style.cursor = 'default'
     }
   }
-  AjaxObject[Return].ontimeout = (e)=>{
+  AjaxObject[Return].ontimeout = e => {
     place = 'Loading timeout!'
     document.documentElement.style.cursor = 'default'
   }
