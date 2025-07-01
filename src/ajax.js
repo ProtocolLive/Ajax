@@ -1,6 +1,6 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2025.07.01.01
+//Version 2025.07.01.02
 
 /*
 To use a loading animation, create an element with id "AjaxLoading".
@@ -8,7 +8,6 @@ To use a loading animation, create an element with id "AjaxLoading".
 
 if(typeof AjaxObject === undefined){
   var AjaxObject = []
-  var AjaxLoading = ''
 }
 
 function AjaxExecute(Place){
