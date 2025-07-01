@@ -1,6 +1,6 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2025.07.01.00
+//Version 2025.07.01.01
 
 /*
 To use a loading animation, create an element with id "AjaxLoading".
@@ -102,12 +102,12 @@ function AjaxXtr(Url, Return, Form){
   AjaxObject[Return].send(Form)
 }
 
-function Ajax(Url, Return, Form = null, OnReady = null){
+function Ajax(Url, Return, Form = undefined, OnReady = undefined){
   if(document.getElementById(Return) === null){
     console.log('Ajax error: \'' + Return + '\' is an invalid return element')
     return
   }
-  if(Form !== null
+  if(Form !== undefined
   && document.forms[Form] === undefined){
     console.log('Ajax error: \'' + Form + '\' is an invalid form element')
     return
