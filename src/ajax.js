@@ -1,6 +1,6 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2025.06.15.04
+//Version 2025.07.01.00
 
 /*
 To use a loading animation, create an element with id "AjaxLoading".
@@ -29,6 +29,7 @@ function AjaxFetch(Url, Return, Form, OnReady){
       body: new FormData(document.forms[Form])
     }
   }
+  Loading(Return)
   fetch(Url, Form)
   .then(response => {
     response.text()
@@ -112,10 +113,8 @@ function Ajax(Url, Return, Form = null, OnReady = null){
     return
   }
   if('fetch' in window){
-    Loading(Return)
     AjaxFetch(Url, Return, Form, OnReady)
   }else{
-    Loading(Return)
     AjaxXtr(Url, Return, Form)
   }
 }
