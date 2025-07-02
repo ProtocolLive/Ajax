@@ -1,12 +1,12 @@
 //Protocol Corporation Ltda.
 //https://github.com/ProtocolLive/Ajax
-//Version 2025.07.01.04
+//Version 2025.07.02.00
 
 /*
 To use a loading animation, create an element with id "AjaxLoading".
 */
 
-if(typeof AjaxObject === undefined){
+if(AjaxObject === undefined){
   var AjaxObject = []
 }
 
@@ -28,7 +28,7 @@ function AjaxFetch(Url, Return, Form, OnReady){
       body: new FormData(document.forms[Form])
     }
   }
-  Loading(Return)
+  AjaxLoading(Return)
   fetch(Url, Form)
   .then(response => {
     response.text()
@@ -57,11 +57,18 @@ function AjaxFetch(Url, Return, Form, OnReady){
   })
 }
 
-function AjaxXtr(Url, Return, Form){
+function AjaxLoading(Return){
+  if(document.getElementById("AjaxLoading") !== null){
+    document.getElementById(Return).innerHTML = document.getElementById("AjaxLoading").innerHTML
+  }else{
+    document.getElementById(Return).innerText = ""
+  }
+}
+
+function AjaxXtr(Url, Return, Form, OnReady){
   if(Form !== undefined){
     Form = new FormData(document.forms[Form])
   }
-  const place = document.getElementById(Return).innerHTML
   if(AjaxObject[Return] == undefined){
     try{
       AjaxObject[Return] = new XMLHttpRequest()
@@ -74,23 +81,20 @@ function AjaxXtr(Url, Return, Form){
     }
   }
   AjaxObject[Return].onreadystatechange = () => {
-    if(AjaxObject[Return].readyState == 1){
-      place = AjaxLoading
-      document.documentElement.style.cursor = 'progress'
-    }else if(AjaxObject[Return].readyState == 3){
-      place = AjaxLoading += AjaxObject[Return].responseText
-    }else if(AjaxObject[Return].readyState == 4 && AjaxObject[Return].status == 404){
-      place = 'Error 404: Page not found'
-      document.documentElement.style.cursor = 'default'
+    if(AjaxObject[Return].readyState == 4
+    && AjaxObject[Return].status !== 200){
+      document.getElementById(Return).innerHTML = 'Ajax error<br>'
+      console.log('Ajax: ' + error.message)
     }else if(AjaxObject[Return].readyState == 4){
-      place = AjaxObject[Return].responseText
+      document.getElementById(Return).innerHTML = AjaxObject[Return].responseText
       AjaxExecute(Return)
-      document.documentElement.style.cursor = 'default'
+      if(OnReady !== undefined){
+        OnReady()
+      }
     }
   }
   AjaxObject[Return].ontimeout = e => {
-    place = 'Loading timeout!'
-    document.documentElement.style.cursor = 'default'
+    document.getElementById(Return).innerHTML = 'Loading timeout!'
   }
   if(typeof Form === undefined){
     AjaxObject[Return].open('GET', Url, true)
@@ -99,6 +103,7 @@ function AjaxXtr(Url, Return, Form){
   }
   AjaxObject[Return].timeout = 60000
   AjaxObject[Return].send(Form)
+  AjaxLoading(Return)
 }
 
 function Ajax(Url, Return, Form = undefined, OnReady = undefined){
@@ -115,13 +120,5 @@ function Ajax(Url, Return, Form = undefined, OnReady = undefined){
     AjaxFetch(Url, Return, Form, OnReady)
   }else{
     AjaxXtr(Url, Return, Form)
-  }
-}
-
-function Loading(Return){
-  if(document.getElementById("AjaxLoading") !== null){
-    document.getElementById(Return).innerHTML = document.getElementById("AjaxLoading").innerHTML
-  }else{
-    document.getElementById(Return).innerText = ""
   }
 }
